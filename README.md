@@ -21,6 +21,23 @@ Use this if you want to build from source, test latest changes, or patch Verus.
 You can also modify the Dockerfile to check out a specific commit or tag, and adjust the Rust version used.
 
 > **Note:** Verus relies on a specific version of Rust. When modifying the Dockerfile to use another version, make sure to also update the `FROM rust:<version>-slim` line accordingly.
+---
+## Obtaining the Containers:
+Obtain the Dockerfiles by running 
+```bash
+git clone git@github.com:JoPolzin/verus-container.git
+```
+Optionally, you can directly pull the containers by running: 
+```bash
+docker pull ghcr.io/jopolzin/verus-container:source
+docker pull ghcr.io/jopolzin/verus-container:latest
+```
+or with podman:
+```bash
+podman pull ghcr.io/jopolzin/verus-container:source
+podman pull ghcr.io/jopolzin/verus-container:latest
+```
+When using this option you can skip the next step of building the container
 
 ---
 
