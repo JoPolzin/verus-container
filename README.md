@@ -22,7 +22,7 @@ You can also modify the Dockerfile to check out a specific commit or tag, and ad
 
 > **Note:** Verus relies on a specific version of Rust. When modifying the Dockerfile to use another version, make sure to also update the `FROM rust:<version>-slim` line accordingly.
 ---
-## Obtaining the Containers:
+## ⬇️ Obtaining the Containers:
 Obtain the Dockerfiles by running 
 ```bash
 git clone git@github.com:JoPolzin/verus-container.git
