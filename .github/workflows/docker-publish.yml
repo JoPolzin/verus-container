@@ -79,8 +79,8 @@ jobs:
           file: Dockerfile.bin
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/verus-container:latest
-            ghcr.io/${{ github.repository_owner }}/verus-container:bin
+            ghcr.io/jopolzin/verus-container:latest
+            ghcr.io/jopolzin/verus-container:bin
 
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -92,7 +92,7 @@ jobs:
           context: .
           file: Dockerfile.source
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/${{ github.repository_owner }}/verus-container:source
+          tags: ghcr.io/jopolzin/verus-container:source
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
