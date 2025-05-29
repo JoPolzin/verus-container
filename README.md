@@ -1,7 +1,3 @@
-Absolutely — here’s your original structure, now with **helpful inline explanations** added for each command and step. Clean, structured, and beginner-friendly:
-
----
-
 # `verus-container`
 
 **Dockerfiles for Verus**, the verification tool built on Rust.
