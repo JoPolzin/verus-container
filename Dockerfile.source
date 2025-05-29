@@ -1,0 +1,26 @@
+FROM rust:1.85.1-slim
+
+RUN apt-get update && apt-get install -y git curl unzip sudo
+
+# Create the user with home directory and bash shell
+RUN useradd -m -s /bin/bash verususer && \
+    echo "verususer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Switch to the new user
+USER verususer
+WORKDIR /home/verususer
+
+# get and build verus
+RUN mkdir ./.verus; \
+    cd ./.verus; \
+    git clone https://github.com/verus-lang/verus.git; \
+    cd ./verus/source; \
+    ./tools/get-z3.sh; \
+    bash -c "source ../tools/activate && vargo build --release;"
+
+# install verus
+RUN sudo cp -r ~/.verus/verus /opt/verus; \
+    sudo ln -s /opt/verus/source/target-verus/release/verus /usr/local/bin/verus
+
+# Clean up the build directory
+RUN  rm -r ~/.verus

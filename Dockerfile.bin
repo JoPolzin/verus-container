@@ -1,4 +1,4 @@
-FROM rust:1.82.0-slim
+FROM rust:1.85.1-slim
 
 RUN apt-get update && apt-get install -y git curl wget unzip jq sudo
 
@@ -10,16 +10,17 @@ RUN useradd -m -s /bin/bash verususer && \
 USER verususer
 WORKDIR /home/verususer
 
-# Download and install Verus
+# Download and unpack verus
 RUN URL=$(curl -s https://api.github.com/repos/verus-lang/verus/releases/latest \
     | jq -r '.assets[] | select(.name | test("x86-linux\\.zip$")) | .browser_download_url') && \
     echo "Downloading $URL" && \
     wget "$URL" -O verus.zip && \
     unzip verus.zip && \
-    chmod +x ~/verus-*/verus && \
-    mv verus-x86-linux verus && \ 
-    rm -rf verus.zip verus-*  
+    chmod +x ~/verus-*/verus
 
-ENV PATH="~/verus:${PATH}"
-
-
+# Install verus 
+RUN sudo cp -r ~/verus-x86-linux /opt/verus; \
+    sudo ln -s /opt/verus/verus /usr/local/bin/verus
+    
+# Clean up the build directory
+RUN rm -rf ~/verus.zip ~/verus-x86-linux
