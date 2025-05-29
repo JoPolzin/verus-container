@@ -19,7 +19,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: jopolzin/verus-container
 
 
 jobs:
@@ -79,8 +79,9 @@ jobs:
           file: Dockerfile.bin
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:bin
+            ghcr.io/${{ github.repository_owner }}/verus-container:latest
+            ghcr.io/${{ github.repository_owner }}/verus-container:bin
+
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -91,7 +92,7 @@ jobs:
           context: .
           file: Dockerfile.source
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:source
+          tags: ghcr.io/${{ github.repository_owner }}/verus-container:source
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
