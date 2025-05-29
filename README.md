@@ -52,7 +52,7 @@ Or if you built the binary-based image:
 docker run --rm -v "$(pwd):/work" -w /work verus_bin verus ./your_file.rs
 ```
 
-## Running Verus
+## ⚙️ Running Verus
 
 From inside the container run:
 ```bash
